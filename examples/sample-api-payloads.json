@@ -1,0 +1,88 @@
+{
+  "intake_request": {
+    "message": "I’m meeting Westlake High School about helmets and jerseys. They want 50 varsity helmets in matte navy and matching jerseys. Build a draft quote with the standard booster club discount."
+  },
+  "quote_workflow_start": {
+    "correlation_id": "corr_demo_001",
+    "account_name": "Westlake High School",
+    "requested_items": [
+      {
+        "product_family": "helmet",
+        "quantity": 50,
+        "configuration": {
+          "level": "varsity",
+          "color": "matte navy"
+        }
+      },
+      {
+        "product_family": "jersey",
+        "quantity": 50,
+        "configuration": {
+          "style": "matching team jersey",
+          "color": "matte navy"
+        }
+      }
+    ],
+    "discount_request": {
+      "type": "booster_club_standard",
+      "requested_percent": 10
+    }
+  },
+  "draft_quote_response": {
+    "workflow_id": "wf_quote_demo_001",
+    "correlation_id": "corr_demo_001",
+    "workflow_type": "quote_assist",
+    "workflow_status": "completed",
+    "outcome": "draft_quote_created",
+    "draft_quote_id": "dq_demo_001",
+    "guardrail_decision": "allow",
+    "requires_manager_approval": false,
+    "rep_summary": "Draft quote prepared for Westlake High School with 50 varsity helmets in matte navy and matching jerseys using the standard booster club discount. This is a draft only and does not create a final order or shipment."
+  },
+  "audit_event": {
+    "event_id": "evt_demo_001",
+    "workflow_id": "wf_quote_demo_001",
+    "correlation_id": "corr_demo_001",
+    "event_type": "quote_guardrail_checked",
+    "node_name": "quote_guardrail_check",
+    "tool_name": null,
+    "input_summary": {
+      "account_context_present": true,
+      "product_spec_reference_present": true,
+      "inventory_available": true,
+      "discount_percent": 10
+    },
+    "output_summary": {
+      "guardrail_decision": "allow",
+      "reason": "Required account, product evidence, inventory, pricing, and discount controls passed."
+    }
+  },
+  "cost_telemetry_event": {
+    "workflow_id": "wf_quote_demo_001",
+    "correlation_id": "corr_demo_001",
+    "workflow_type": "quote_assist",
+    "llm_calls": 2,
+    "rag_calls": 1,
+    "retrieved_chunks": 4,
+    "mcp_tool_calls": 5,
+    "input_tokens": 1200,
+    "output_tokens": 320,
+    "total_tokens": 1520,
+    "estimated_cost_usd": 0.013,
+    "outcome": "draft_quote_created"
+  },
+  "monitoring_summary": {
+    "workflow_type": "quote_assist",
+    "total_runs": 25,
+    "outcomes": {
+      "clarification_required": 4,
+      "invalid_product_or_identifier": 2,
+      "blocked_by_policy": 3,
+      "approval_required": 4,
+      "draft_quote_created": 12
+    },
+    "average_estimated_cost_usd": 0.014,
+    "guardrail_block_rate": 0.12,
+    "approval_required_rate": 0.16
+  }
+}
