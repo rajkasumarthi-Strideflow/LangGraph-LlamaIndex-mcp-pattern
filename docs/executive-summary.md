@@ -8,7 +8,11 @@ Field Sales Agent is a DecisionTrace AI reference app for governed field-sales w
 
 The architecture demonstrates how AI can assist field sales without turning a generic chatbot loose on pricing, inventory, product claims, approvals, or customer commitments. Language models are used only in bounded roles, while deterministic workflow controls, tool boundaries, guardrails, audit trace, cost telemetry, and evaluation define the operating model.
 
-## 2. Business Problem
+## 2. Portfolio Positioning
+
+Field Sales Agent demonstrates enterprise AI architecture depth across orchestration, governance, integration, retrieval, validation, auditability, cost visibility, monitoring, and evaluation. It is intended as a reference design for moving beyond isolated AI pilots toward reusable enterprise AI control patterns.
+
+## 3. Business Problem
 
 Field sales reps need fast access to account context, product details, inventory availability, pricing rules, discount policy, and quote guardrails. A generic chatbot can overpromise, miss approval boundaries, cite unsupported product claims, or imply commitments such as final order creation or shipment.
 
@@ -25,7 +29,7 @@ Field Sales Agent solves this by separating:
 
 This separation is the core enterprise architecture point: AI can accelerate the experience, but governed systems decide what can happen.
 
-## 3. What the Workflow Demonstrates
+## 4. What the Workflow Demonstrates
 
 The Quote Assist Agent demonstrates an end-to-end governed sales workflow:
 
@@ -43,7 +47,7 @@ The Quote Assist Agent demonstrates an end-to-end governed sales workflow:
 12. Deterministic validation checks the response before display.
 13. Audit trace, cost telemetry, monitoring, and evaluation validate the run.
 
-## 4. Architecture Differentiation
+## 5. Architecture Differentiation
 
 Field Sales Agent is deeper than a simple chatbot because the architecture separates AI assistance from control authority.
 
@@ -74,7 +78,7 @@ LangGraph -> MCP tools/resources -> canonical payloads -> enterprise adapters an
 
 This makes Field Sales Agent a strong reference pattern for revenue workflows where AI needs to help users move quickly without bypassing enterprise controls.
 
-## 5. Intentional LangGraph + MCP + LlamaIndex Design
+## 6. Intentional LangGraph + MCP + LlamaIndex Design
 
 LangGraph is the control layer. It decides the sequence, branching, and workflow outcome path.
 
@@ -99,7 +103,7 @@ LangGraph node
 
 LlamaIndex does not approve quotes. It does not create draft quotes. It does not calculate pricing. It does not check inventory. It does not override guardrails.
 
-## 6. Enterprise Adapter Pattern
+## 7. Enterprise Adapter Pattern
 
 The system uses canonical internal payloads and an adapter layer so client-specific MuleSoft/API payloads do not force workflow redesign.
 
@@ -123,7 +127,7 @@ For example, a mock inventory endpoint can later be replaced by a real MuleSoft 
 - monitoring dashboard
 - evaluation scenarios
 
-## 7. Safety and Governance Boundaries
+## 8. Safety and Governance Boundaries
 
 The app intentionally prevents unsupported commitments.
 
@@ -150,7 +154,7 @@ OpenAI is used in bounded roles:
 
 OpenAI does not choose tool order, approve quotes, calculate pricing, decide inventory, create draft quotes, override guardrails, or submit final orders.
 
-## 8. Observability, Auditability, and Cost Telemetry
+## 9. Observability, Auditability, and Cost Telemetry
 
 Field Sales Agent demonstrates enterprise operating controls, not just generation.
 
@@ -166,7 +170,7 @@ The architecture includes:
 
 Cost telemetry does not fake dollar cost. Estimated cost requires configured rates. Token values should appear only when returned by provider usage metadata.
 
-## 9. Evaluation Strategy
+## 10. Evaluation Strategy
 
 The app includes local golden-scenario evaluation. Golden scenarios validate:
 
@@ -188,7 +192,7 @@ Assertions check:
 
 Local deterministic evaluation is the source of truth for control behavior. LLM-as-judge and LangSmith evaluation are future enhancements.
 
-## 10. Demo Story
+## 11. Demo Story
 
 Example prompt:
 
@@ -213,7 +217,7 @@ Contrasting case:
 If inventory is insufficient, the workflow may require approval. No draft quote is created when guardrails require approval.
 
 
-## 11. Phase 1 Validation Status
+## 12. Phase 1 Validation Status
 
 Phase 1 has been validated as a deployed release candidate for public demo and architecture review. The validated scenarios confirm:
 
@@ -226,7 +230,7 @@ Phase 1 has been validated as a deployed release candidate for public demo and a
 
 This validation does not claim production readiness, real enterprise integration, or regulatory compliance. It confirms that the public demo narrative aligns with the governed Quote Assist control model and release-candidate behavior.
 
-## 12. Public vs Private Repo Boundary
+## 13. Public vs Private Repo Boundary
 
 This public repo contains architecture, executive summary, diagrams, API examples, and demo narrative. The full runnable implementation, MCP server code, LlamaIndex pipeline, database/schema details, cost telemetry logic, reusable orchestration code, and proprietary accelerator internals remain in a private implementation repo.
 
@@ -240,7 +244,7 @@ Do not include:
 - real product data
 - proprietary accelerator internals
 
-## 13. Roadmap
+## 14. Roadmap
 
 Future directions include:
 

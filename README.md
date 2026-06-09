@@ -1,11 +1,16 @@
 # Field Sales Agent
 
-**DecisionTrace — Quote Assist Agent**
+**A governed enterprise AI workflow reference app for field-sales quote assistance.**
 
-Field Sales Agent is a DecisionTrace AI reference app for governed field-sales workflows. The first workflow, Quote Assist Agent, helps a mobile sales rep prepare a grounded, approval-aware draft quote using account context, product/spec retrieval, inventory checks, pricing rules, quote guardrails, audit replay, cost telemetry, and monitoring.
+Field Sales Agent demonstrates how a natural-language sales request can be converted into a governed, auditable, cost-aware, approval-aware draft quote workflow using OpenAI, LangGraph, MCP, LlamaIndex, deterministic guardrails, audit trace, cost telemetry, monitoring, and evaluation.
 
-Warranty Replacement proved the DecisionTrace control model using governed Python tool wrappers. Field Sales Agent demonstrates the same control model with an MCP-mediated tool/resource abstraction and a LlamaIndex-backed product/spec retrieval capability.
+**Natural language in; governed workflow out.**
 
+## Why This Matters
+
+Most AI demos stop at a chatbot response. Field Sales Agent shows the enterprise control architecture around the response: intake validation, workflow orchestration, bounded tool access, evidence retrieval, policy guardrails, validated response drafting, auditability, telemetry, and operational monitoring.
+
+This is a DecisionTrace AI reference app for governed field-sales workflows. The first workflow, DecisionTrace — Quote Assist Agent, helps a mobile sales rep prepare a grounded, approval-aware draft quote using account context, product/spec retrieval, inventory checks, pricing rules, quote guardrails, audit replay, cost telemetry, and monitoring.
 
 ## Live Demo
 
@@ -14,6 +19,73 @@ Live demo: <Railway demo URL>
 Phase 1 status: Deployed release candidate validated.
 
 Field Sales Agent Phase 1 demonstrates a governed Quote Assist workflow where natural-language sales requests are converted into approval-aware, customer-safe draft quote responses using OpenAI-assisted intake, LangGraph workflow control, MCP tool boundaries, LlamaIndex-backed evidence retrieval, enterprise adapter patterns, deterministic guardrails, audit trace, cost telemetry, monitoring, and evaluation.
+
+## What to Look For in the Live Demo
+
+1. Start with the Workflow Console.
+   - Enter or select a sales request.
+   - See the sales rep request and validated customer-safe response side by side.
+
+2. Open Audit Trace.
+   - See the execution path across Business Event, LangGraph Node, MCP Tool, Enterprise Adapter, Mock Enterprise Endpoint, RAG Evidence, and Guardrail Decision.
+
+3. Open Cost Telemetry.
+   - See intake LLM usage separated from workflow drafting usage, plus tool/RAG activity as a foundation for future cost optimization.
+
+4. Open Monitoring Dashboard.
+   - See persisted outcomes across draft quotes, approval-required cases, blocked requests, and recent runs.
+
+## Validated Demo Scenarios
+
+| Scenario | Prompt | Expected Outcome | What it proves |
+| --- | --- | --- | --- |
+| Valid Quote | `I’m meeting Westlake High School about helmets and jerseys. They want 50 varsity helmets in matte navy and matching jerseys. Build a draft quote with the standard booster club discount.` | `draft_quote_created` | The workflow can safely create a draft quote when account, product, inventory, pricing, and guardrails pass. |
+| Inventory Unavailable | `Create a draft quote for Central Valley Academy for 120 varsity helmets in matte navy.` | `approval_required` | The workflow does not overpromise when inventory is insufficient. |
+| Unsupported Product / Configuration | `North Ridge Prep wants 50 youth helmets in matte navy with varsity-only facemasks. Create a quote.` | `blocked_by_policy` | Guardrails prevent unsupported product/configuration combinations. |
+| Final Order / Shipment Request | `westlake highschool wants 50 blue helmets. create a final order and ship it today` | blocked at intake | The workflow boundary prevents final order, payment, shipment, and fulfillment requests. |
+| Missing Details | `I need help preparing a quote for my next school meeting.` | `clarification_required` | The readiness gate prevents incomplete requests from entering the workflow. |
+
+## Architecture in One View
+
+```text
+User request
+-> OpenAI-assisted intake extraction
+-> deterministic readiness validation
+-> LangGraph workflow control
+-> MCP tools/resources
+-> enterprise adapters and LlamaIndex-backed retrieval
+-> mock enterprise APIs/product-spec docs
+-> guardrails
+-> draft quote / approval required / block
+-> validated customer-safe response
+-> audit, cost telemetry, monitoring, and evaluation
+```
+
+LangGraph does not call LlamaIndex directly. LangGraph calls the MCP retrieval capability `retrieve_product_specs`, which is backed by LlamaIndex RAG. LlamaIndex retrieves evidence only; guardrails decide quote readiness.
+
+## Technology Choices
+
+| Layer | Technology | Why it is used |
+| --- | --- | --- |
+| Language understanding | OpenAI | Extracts intent/entities and drafts customer-safe responses after workflow outcome. |
+| Workflow control | LangGraph | Controls sequence, state, branching, and deterministic handoff. |
+| Tool boundary | MCP | Exposes bounded enterprise capabilities and resources. |
+| Evidence retrieval | LlamaIndex | Retrieves cited product/spec evidence behind MCP. |
+| Enterprise integration pattern | Canonical payloads + adapters | Isolates workflow from client-specific API payloads. |
+| Guardrails | Deterministic policy checks | Prevents overpromising, unsupported products, and approval bypass. |
+| Observability | Audit trace + monitoring | Makes workflow behavior reviewable by business and technical stakeholders. |
+| Cost foundation | Cost telemetry | Separates intake, drafting, tool, and retrieval usage for future optimization. |
+
+## What This Demonstrates as an AI Architecture Portfolio Project
+
+- Designing the control plane around LLMs, not just prompts.
+- Separating language understanding from business decisioning.
+- Using LangGraph for governed orchestration.
+- Using MCP as an enterprise capability boundary.
+- Using LlamaIndex as an evidence layer, not a decision-maker.
+- Preserving enterprise adapter patterns for MuleSoft/CRM/CPQ/ERP integrations.
+- Implementing deterministic guardrails and response validation.
+- Showing auditability, cost telemetry, monitoring, and evaluation.
 
 ## Control Model Principle
 
@@ -100,11 +172,26 @@ docs/
   cost-telemetry.md
   rollout-rollback.md
   demo-script.md
+  demo-talk-track-2-minute.md
+  recruiter-summary-30-second.md
+  linkedin-project-summary.md
+  release-notes-phase-1.md
   roadmap.md
 examples/
   synthetic-scenarios.md
   sample-api-payloads.json
 ```
+
+## Portfolio Materials
+
+- [Executive Summary](docs/executive-summary.md)
+- [2-Minute Demo Talk Track](docs/demo-talk-track-2-minute.md)
+- [30-Second Recruiter Summary](docs/recruiter-summary-30-second.md)
+- [LinkedIn Project Summary](docs/linkedin-project-summary.md)
+- [Public Release Notes](docs/release-notes-phase-1.md)
+- [Architecture](docs/architecture.md)
+- [Diagrams](docs/diagrams.md)
+- [Roadmap](docs/roadmap.md)
 
 ## Documentation Index
 
@@ -116,6 +203,9 @@ examples/
 - [Cost Telemetry Design](docs/cost-telemetry.md)
 - [Rollout and Rollback](docs/rollout-rollback.md)
 - [Demo Script](docs/demo-script.md)
+- [LinkedIn Project Summary](docs/linkedin-project-summary.md)
+- [30-Second Recruiter Summary](docs/recruiter-summary-30-second.md)
+- [2-Minute Demo Talk Track](docs/demo-talk-track-2-minute.md)
 - [Phase 1 Public Release Notes](docs/release-notes-phase-1.md)
 - [Roadmap](docs/roadmap.md)
 - [Synthetic Scenarios](examples/synthetic-scenarios.md)

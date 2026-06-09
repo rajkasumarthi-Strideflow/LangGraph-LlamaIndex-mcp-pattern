@@ -22,21 +22,23 @@ Phase 1 is a deployed release candidate validated against the public demo scenar
 
 ## Future Enhancements
 
+- Cost rate configuration and cost-per-outcome analytics
+- LangSmith evaluation
+- LLM-as-judge evaluation
+- OPA/Rego policy-as-code
+- Salesforce/CPQ integration mapping
+- Agentforce pattern mapping
+- CrewAI review crew if needed
+- Persistent production database
+- Production authentication/security hardening
 - Persistent intake funnel metrics
 - Production hardening for workflow response drafting
 - Dynamic model routing
 - Prompt caching
 - Semantic caching
-- Configured rate cards for dollar cost estimation
-- Cost-per-outcome analytics
-- Rego/OPA policy-as-code
 - Voice interface
-- Salesforce/CPQ integration
-- Agentforce mapping
-- CrewAI review crew if needed
-- τ-Bench-inspired dynamic evaluation
+- Tau-bench-inspired dynamic evaluation
 - Persistent trace-to-evaluation improvement loop
-- Production-grade authentication and authorization
 - Enterprise API adapter framework
 - Human approval workflow integration
 

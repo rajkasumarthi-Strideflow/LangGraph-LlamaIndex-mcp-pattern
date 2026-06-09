@@ -1,0 +1,3 @@
+# 30-Second Recruiter Summary
+
+Field Sales Agent is a portfolio reference app showing how I design enterprise AI workflows beyond chatbot prototypes. It combines OpenAI-assisted intake, LangGraph orchestration, MCP tool boundaries, LlamaIndex evidence retrieval, enterprise adapter patterns, deterministic guardrails, validated response drafting, audit trace, cost telemetry, monitoring, and evaluation. The app demonstrates how natural-language sales requests can be converted into governed, approval-aware draft quote workflows while preventing unsupported product claims, approval bypass, and final order/payment/shipment actions.
