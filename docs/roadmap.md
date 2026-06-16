@@ -20,30 +20,25 @@
 
 Phase 1 is a deployed release candidate validated against the public demo scenarios. The validated release confirms the Quote Assist control model, audit trace, cost telemetry, monitoring, and evaluation narrative while preserving the public/private implementation boundary.
 
-## Next Priority: Agentforce Implementation Mapping
+## Phase 2C Status: Lightweight Agentforce Prototype Complete
 
-Field Sales Agent remains tool-agnostic, but the next portfolio step is to map the architecture into an Agentforce implementation model. This will show how the same enterprise AI control patterns — workflow orchestration, bounded actions, data grounding, policy guardrails, audit trace, cost telemetry, monitoring, and evaluation — can accelerate Salesforce and Agentforce delivery without hard-coding the architecture to one platform.
+Phase 2C validated a lightweight Agentforce implementation path using agent instructions, actions, Flow, and Prompt Builder. The goal was not to recreate the full custom Quote Assist reference app in a limited trial org, but to show how the same enterprise AI control patterns map into Salesforce-native capabilities.
 
-Planned Phase 2B outputs:
+The full Field Sales Agent architecture remains tool-agnostic. Phase 2C validates how selected control-plane concepts can be implemented in Agentforce using scoped agent behavior, bounded actions, Flow-backed workflow handoff, prompt-governed response generation, and safe response boundaries.
 
-- Agentforce mapping diagram
-- Field Sales Agent node-to-Agentforce concept mapping
-- action/tool boundary mapping
-- Flow/Apex/MuleSoft integration boundary mapping
-- policy guardrail placement
-- auditability and evaluation checklist
-- implementation planning checklist
-- demo talk track for Salesforce / Agentforce audiences
+## Updated Phase 2 Roadmap
 
-Agentforce mapping is planned as an architecture and implementation planning artifact. It does not imply a live Salesforce integration in the current demo.
+Completed:
 
-## Reordered Phase 2 Roadmap
+- **Phase 2B — Agentforce Implementation Mapping**
+- **Phase 2C — Lightweight Agentforce Prototype**
 
-1. **Phase 2B — Agentforce Implementation Mapping**
-2. **Phase 2C — Evaluation and Release Quality Gates**
-3. **Phase 2D — Cost Rate Configuration and Cost-per-Outcome Analytics**
-4. **Phase 2E — Human Approval Handoff Pattern**
-5. **Later — Policy Version Promotion / Policy Workbench**
+Next:
+
+1. **Phase 2D — Evaluation and Release Quality Gates**
+2. **Phase 2E — Cost Rate Configuration and Cost-per-Outcome Analytics**
+3. **Phase 2F — Human Approval Handoff Pattern**
+4. **Later — Policy Version Promotion / Policy Workbench**
 
 ## Later Enhancements
 

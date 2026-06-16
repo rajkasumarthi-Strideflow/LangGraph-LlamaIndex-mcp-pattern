@@ -250,13 +250,19 @@ Do not include:
 
 Future directions include:
 
-1. **Phase 2B — Agentforce Implementation Mapping**
-2. **Phase 2C — Evaluation and Release Quality Gates**
-3. **Phase 2D — Cost Rate Configuration and Cost-per-Outcome Analytics**
-4. **Phase 2E — Human Approval Handoff Pattern**
-5. **Later — Policy Version Promotion / Policy Workbench**
+Completed:
 
-Agentforce mapping is the next portfolio priority because it connects the tool-agnostic Field Sales Agent control model to a concrete enterprise SaaS implementation path. The mapping will show how workflow orchestration, bounded actions, Flow/Apex/MuleSoft boundaries, data grounding, policy guardrails, audit trace, cost telemetry, monitoring, and evaluation can accelerate Salesforce and Agentforce planning without claiming a live Salesforce integration in the current demo.
+- **Phase 2B — Agentforce Implementation Mapping**
+- **Phase 2C — Lightweight Agentforce Prototype**
+
+Next:
+
+1. **Phase 2D — Evaluation and Release Quality Gates**
+2. **Phase 2E — Cost Rate Configuration and Cost-per-Outcome Analytics**
+3. **Phase 2F — Human Approval Handoff Pattern**
+4. **Later — Policy Version Promotion / Policy Workbench**
+
+Phase 2C extended the portfolio by validating selected Field Sales Agent architecture patterns inside Agentforce through a lightweight prototype using agent instructions, actions, Flow, and Prompt Builder. This does not claim a full Salesforce CPQ or production implementation; it validates the implementation mapping pattern.
 
 ## 14. Phase 2A Policy-as-Code Guardrail
 

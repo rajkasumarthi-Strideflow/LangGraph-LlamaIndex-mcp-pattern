@@ -45,10 +45,8 @@ OpenAI assists with language. LangGraph controls workflow. MCP bounds enterprise
 
 Phase 2A does not implement final order creation, payment, shipment, or fulfillment. It does not imply production readiness or a full policy management platform. Production usage would require policy ownership, approval workflow, versioning, rollout controls, rollback controls, and regression validation.
 
-## Next Priority: Agentforce Implementation Mapping
+## Follow-On Status
 
-Phase 2B will map the Field Sales Agent architecture into an Agentforce implementation model. The goal is to show how the same enterprise AI control patterns — workflow orchestration, bounded actions, data grounding, policy guardrails, audit trace, cost telemetry, monitoring, and evaluation — can accelerate Salesforce and Agentforce implementation planning while keeping the architecture tool-agnostic.
+Phase 2B mapped the Field Sales Agent architecture into an Agentforce implementation model, and Phase 2C validated selected patterns through a lightweight Agentforce prototype using agent instructions, actions, Flow, and Prompt Builder.
 
-Planned outputs include an Agentforce mapping diagram, node-to-Agentforce concept mapping, action/tool boundary mapping, Flow/Apex/MuleSoft integration boundary mapping, policy guardrail placement, auditability and evaluation checklist, implementation planning checklist, and demo talk track for Salesforce / Agentforce audiences.
-
-Agentforce mapping is planned as an architecture and implementation planning artifact. It does not imply a live Salesforce integration in the current demo.
+The next roadmap priority is Phase 2D — Evaluation and Release Quality Gates. The Agentforce work remains an architecture and implementation planning pattern; it does not imply a full Salesforce CPQ or production implementation in the current demo.
