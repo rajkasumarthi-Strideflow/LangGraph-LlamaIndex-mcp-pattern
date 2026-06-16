@@ -140,6 +140,9 @@ Included artifacts:
 - Lightweight PDR for Quote Assist Agent
 - Architecture overview and public/private boundary
 - C4 context and container diagrams
+  - [C4 Level 1 — System Context Diagram](docs/architecture/01-system-context.md)
+  - [C4 Level 2 — Container Diagram: Runtime Interaction View](docs/architecture/02-container-runtime-interaction.md)
+  - [C4 Level 2 — Container Diagram: Reference App Structure](docs/architecture/03-container-reference-app-structure.md)
 - Workflow, retrieval, cost telemetry, and rollout diagrams
 - MCP-mediated LlamaIndex retrieval pattern explanation
 - Public-safe API contract examples
@@ -209,6 +212,9 @@ examples/
 - [Public Release Notes](docs/release-notes-phase-1.md)
 - [Phase 2A Release Notes](docs/release-notes-phase-2a.md)
 - [Architecture](docs/architecture.md)
+- [C4 Level 1 — System Context Diagram](docs/architecture/01-system-context.md)
+- [C4 Level 2 — Container Diagram: Runtime Interaction View](docs/architecture/02-container-runtime-interaction.md)
+- [C4 Level 2 — Container Diagram: Reference App Structure](docs/architecture/03-container-reference-app-structure.md)
 - [Diagrams](docs/diagrams.md)
 - [Roadmap](docs/roadmap.md)
 
@@ -217,6 +223,9 @@ examples/
 - [Executive Summary](docs/executive-summary.md)
 - [Product Definition Requirements](docs/pdr.md)
 - [Architecture Overview](docs/architecture.md)
+- [C4 Level 1 — System Context Diagram](docs/architecture/01-system-context.md)
+- [C4 Level 2 — Container Diagram: Runtime Interaction View](docs/architecture/02-container-runtime-interaction.md)
+- [C4 Level 2 — Container Diagram: Reference App Structure](docs/architecture/03-container-reference-app-structure.md)
 - [Architecture Diagrams](docs/diagrams.md)
 - [API Contract Examples](docs/api-contracts.md)
 - [Cost Telemetry Design](docs/cost-telemetry.md)

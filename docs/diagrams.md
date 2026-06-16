@@ -2,60 +2,17 @@
 
 These Mermaid diagrams are public-safe architecture diagrams for the DecisionTrace — Quote Assist Agent reference workflow. The Phase 1 release candidate has been validated against the public demo scenarios.
 
-## 1. C4 Context Diagram
+## C4 Architecture Views
 
-```mermaid
-flowchart LR
-  Rep["Field Sales Rep"] --> UI["Field Sales Agent UI"]
-  UI --> API["DecisionTrace API Layer"]
-  API --> Workflow["Quote Assist LangGraph Workflow"]
-  Workflow --> MCP["MCP Tool/Resource Layer"]
-  MCP --> CRM["Synthetic CRM Data"]
-  MCP --> Inventory["Synthetic Inventory Data"]
-  MCP --> Pricing["Pricing Rules"]
-  MCP --> RAG["LlamaIndex Product/Spec Retrieval"]
-  Workflow --> Audit["Audit Trace / Monitoring"]
-  Workflow --> Cost["Cost Telemetry"]
-  Reviewer["Manager / Reviewer"] --> UI
-```
+1. [C4 Level 1 — System Context Diagram](architecture/01-system-context.md)
+2. [C4 Level 2 — Container Diagram: Runtime Interaction View](architecture/02-container-runtime-interaction.md)
+3. [C4 Level 2 — Container Diagram: Reference App Structure](architecture/03-container-reference-app-structure.md)
 
-## 2. C4 Container Diagram
+The two Level 2 views are complementary: the Runtime Interaction View explains the quote request flow, while the Reference App Structure view explains the app organization and major runtime zones.
 
-```mermaid
-flowchart TB
-  subgraph App["Field Sales Agent Reference App"]
-    UI["Browser Demo UI"]
-    API["FastAPI-style API Contracts"]
-    Router["Intake Router"]
-    Graph["LangGraph Quote Workflow"]
-    Guardrails["Quote Guardrails"]
-    Audit["Audit Event Store"]
-    Cost["Cost Telemetry Store"]
-    Monitor["Monitoring Summary"]
-  end
+## Additional Diagrams
 
-  subgraph MCPZone["MCP-style Access Layer"]
-    Client["MCP Client Interface"]
-    Server["MCP Server"]
-    Resources["Tools and Resources"]
-  end
-
-  subgraph Retrieval["Product Evidence"]
-    Index["LlamaIndex Retrieval Service"]
-    Specs["Synthetic Product Specs"]
-  end
-
-  UI --> API --> Router --> Graph
-  Graph --> Guardrails
-  Graph --> Client --> Server --> Resources
-  Resources --> Index --> Specs
-  Graph --> Audit
-  Graph --> Cost
-  Audit --> Monitor
-  Cost --> Monitor
-```
-
-## 3. Phase 1 Workflow Sequence
+### 1. Phase 1 Workflow Sequence
 
 ```mermaid
 sequenceDiagram
@@ -85,7 +42,7 @@ sequenceDiagram
   Graph-->>Rep: Rep-facing summary and caveats
 ```
 
-## 4. MCP + LlamaIndex Retrieval Sequence
+### 2. MCP + LlamaIndex Retrieval Sequence
 
 ```mermaid
 sequenceDiagram
@@ -106,7 +63,7 @@ sequenceDiagram
   Node->>Audit: Record retrieval event, chunks, evidence references
 ```
 
-## 5. Cost Telemetry Flow
+### 3. Cost Telemetry Flow
 
 ```mermaid
 flowchart LR
@@ -123,7 +80,7 @@ flowchart LR
   Summary --> Dashboard["Monitoring Dashboard Design"]
 ```
 
-## 6. Controlled Rollout / Rollback Flow
+### 4. Controlled Rollout / Rollback Flow
 
 ```mermaid
 flowchart TD
@@ -141,7 +98,7 @@ flowchart TD
 ```
 
 
-## 7. Post-Outcome Response Drafting Boundary
+### 5. Post-Outcome Response Drafting Boundary
 
 ```mermaid
 sequenceDiagram
