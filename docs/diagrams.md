@@ -18,28 +18,67 @@ The two Level 2 views are complementary: the Runtime Interaction View explains t
 sequenceDiagram
   participant Rep as Field Sales Rep
   participant Router as Intake Router
+  participant LLM as LLM
   participant Graph as LangGraph Workflow
   participant MCP as MCP Tools/Resources
+  participant API as Enterprise API Layer
   participant RAG as LlamaIndex Retrieval
+  participant Policy as Policy-as-Code
   participant Guard as Quote Guardrails
   participant Audit as Audit/Cost Telemetry
 
   Rep->>Router: Natural-language quote request
-  Router->>Router: Extract account, products, quantities, discount intent
-  Router-->>Rep: Clarification if required facts missing
+
+  Router->>LLM: Resolve intent and extract account, products, quantities, discount intent
+  LLM-->>Router: Structured intake fields and intent classification
+
+  Router->>Router: Deterministic readiness validation
+  Router-->>Rep: Clarification if required facts are missing
   Router->>Graph: Start quote assist workflow with validated fields
-  Graph->>MCP: Retrieve synthetic account context
+
+  Graph->>MCP: Get account context
+  MCP->>API: Retrieve account profile
+  API-->>MCP: Account context
+  MCP-->>Graph: Account context result
+
   Graph->>MCP: retrieve_product_specs(query, filters)
   MCP->>RAG: Retrieve product/spec evidence
   RAG-->>MCP: Cited evidence
-  MCP-->>Graph: MCP result with evidence IDs
+  MCP-->>Graph: Product/spec evidence result
+
+  Graph->>MCP: Search matching products
+  MCP->>API: Search product catalog
+  API-->>MCP: Matching product options
+  MCP-->>Graph: Product match result
+
   Graph->>MCP: Check inventory
+  MCP->>API: Inventory availability request
+  API-->>MCP: Available inventory
+  MCP-->>Graph: Inventory result
+
   Graph->>MCP: Calculate pricing and discount
+  MCP->>API: Pricing calculation request
+  API-->>MCP: Pricing and discount result
+  MCP-->>Graph: Pricing result
+
+  Graph->>Policy: Evaluate discount approval policy
+  Policy-->>Graph: allow / approval_required / blocked_by_policy
+
   Graph->>Guard: Evaluate quote readiness
   Guard-->>Graph: allow / block / approval_required
+
   Graph->>MCP: Create draft quote only if allowed
-  Graph->>Audit: Record events, trace, cost telemetry
-  Graph-->>Rep: Rep-facing summary and caveats
+  MCP->>API: Draft quote creation request
+  API-->>MCP: Draft quote ID and quote summary
+  MCP-->>Graph: Draft quote result
+
+  Graph->>LLM: Draft rep-facing response from bounded workflow outcome and facts
+  LLM-->>Graph: Customer-safe rep-facing message
+
+  Graph->>Graph: Deterministic response validation
+  Graph->>Audit: Record node inputs, outputs, external requests, responses, policy decisions, and cost telemetry
+
+  Graph-->>Rep: Validated rep-facing message, outcome, and caveats
 ```
 
 ### 2. MCP + LlamaIndex Retrieval Sequence
